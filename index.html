@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sadik Mondal - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+      * {
+        font-family: "Inter", sans-serif;
+      }
+
+      .gradient-bg {
+        background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .card-3d {
+        transform-style: preserve-3d;
+        transition: all 0.3s ease;
+      }
+
+      .card-3d:hover {
+        transform: rotateY(5deg) rotateX(5deg) translateZ(20px);
+      }
+
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .glow {
+        box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+      }
+
+      .skill-tag {
+        transition: all 0.3s ease;
+      }
+
+      .skill-tag:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .dark .gradient-bg {
+        background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
+      }
+
+      .parallax {
+        transform: translateZ(0);
+        transition: transform 0.1s ease-out;
+      }
+
+      .project-card {
+        perspective: 1000px;
+      }
+
+      .project-inner {
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+      }
+
+      .project-card:hover .project-inner {
+        transform: rotateY(10deg) rotateX(5deg);
+      }
+
+      .typewriter {
+        overflow: hidden;
+        border-right: 0.15em solid #667eea;
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: 0.15em;
+        animation: typing 3.5s steps(40, end),
+          blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #667eea;
+        }
+      }
+
+      .smooth-scroll {
+        scroll-behavior: smooth;
+      }
+
+      .nav-blur {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .dark .nav-blur {
+        background: rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body class="smooth-scroll transition-colors duration-300">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+          <div class="relative">
+            <div
+              id="logoText"
+              class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent cursor-pointer hover:scale-105 transition-all duration-300 select-none flex items-center"
+              onclick="toggleLogoMenu()"
+            >
+              SM
+              <i
+                class="fas fa-chevron-down ml-2 text-sm transition-transform duration-300"
+                id="logoChevron"
+              ></i>
+            </div>
+
+            <!-- Dropdown Menu -->
+            <div
+              id="logoDropdown"
+              class="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 opacity-0 invisible transform scale-95 transition-all duration-300 z-50"
+            >
+              <div class="p-4">
+                <div class="text-center mb-4">
+                  <div
+                    class="w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center"
+                  >
+                    <span class="text-white font-bold text-xl">SM</span>
+                  </div>
+                  <h3 class="font-bold text-gray-800 dark:text-white">
+                    Sadik Mondal
+                  </h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">
+                    MERN Stack Developer
+                  </p>
+                </div>
+
+                <div class="space-y-2">
+                  <button
+                    onclick="scrollToSection('about')"
+                    class="w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors flex items-center"
+                  >
+                    <i class="fas fa-user mr-3 text-blue-500"></i>
+                    About Me
+                  </button>
+                  <button
+                    onclick="scrollToSection('projects')"
+                    class="w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors flex items-center"
+                  >
+                    <i class="fas fa-code mr-3 text-green-500"></i>
+                    My Projects
+                  </button>
+                  <button
+                    onclick="scrollToSection('skills')"
+                    class="w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors flex items-center"
+                  >
+                    <i class="fas fa-cogs mr-3 text-purple-500"></i>
+                    Skills
+                  </button>
+                  <!-- ADD YOUR GOOGLE DRIVE FILE ID HERE: Replace YOUR_GOOGLE_DRIVE_FILE_ID with your actual file ID -->
+                  <a
+                    href="https://drive.google.com/uc?export=download&id=1w8rNYMIoRQQmLHsTLgUcFiOyAac__Hoz
+"
+                    target="_blank"
+                    class="w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors flex items-center"
+                  >
+                    <i class="fas fa-download mr-3 text-orange-500"></i>
+                    Download Resume
+                  </a>
+                </div>
+
+                <div
+                  class="border-t border-gray-200 dark:border-gray-600 mt-4 pt-4"
+                >
+                  <div class="flex justify-center space-x-3">
+                    <a
+                      href="https://github.com/sadikmondal"
+                      target="_blank"
+                      class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                    >
+                      <i class="fab fa-github text-white text-sm"></i>
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/sadik-mondal-engineer"
+                      target="_blank"
+                      class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                    >
+                      <i class="fab fa-linkedin text-white text-sm"></i>
+                    </a>
+                    <a
+                      href="https://leetcode.com/sadikmondal"
+                      target="_blank"
+                      class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                    >
+                      <i class="fas fa-code text-white text-sm"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="#home"
+              class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition-colors"
+              >Home</a
+            >
+            <a
+              href="#about"
+              class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition-colors"
+              >About</a
+            >
+            <a
+              href="#projects"
+              class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition-colors"
+              >Projects</a
+            >
+            <a
+              href="#skills"
+              class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition-colors"
+              >Skills</a
+            >
+            <a
+              href="#contact"
+              class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition-colors"
+              >Contact</a
+            >
+          </div>
+          <button
+            id="darkModeToggle"
+            class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+          >
+            <i class="fas fa-moon dark:hidden"></i>
+            <i class="fas fa-sun hidden dark:inline"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="min-h-screen gradient-bg flex items-center justify-center relative overflow-hidden"
+    >
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="relative z-10 text-center text-white px-4">
+        <div class="floating">
+          <h1 class="text-5xl md:text-7xl font-bold mb-4">SADIK MONDAL</h1>
+          <div
+            id="typewriter"
+            class="text-xl md:text-2xl mb-8 inline-block text-white min-h-[2rem] border-r-2 border-white animate-pulse"
+          >
+            MERN Stack Developer
+          </div>
+        </div>
+        <div class="space-x-4 mt-8">
+          <button
+            onclick="scrollToSection('projects')"
+            class="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-8 py-3 rounded-full hover:bg-white/30 transition-all duration-300 transform hover:scale-105 glow"
+          >
+            View Projects
+          </button>
+          <!-- ADD YOUR GOOGLE DRIVE FILE ID HERE: Replace YOUR_GOOGLE_DRIVE_FILE_ID with your actual file ID -->
+          <a
+            href="https://drive.google.com/uc?export=download&id=1w8rNYMIoRQQmLHsTLgUcFiOyAac__Hoz
+"
+            target="_blank"
+            class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 inline-block"
+          >
+            Download Resume
+          </a>
+        </div>
+      </div>
+      <div
+        class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
+      >
+        <i class="fas fa-chevron-down text-white text-2xl"></i>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section
+      id="about"
+      class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+    >
+      <div class="max-w-6xl mx-auto px-4">
+        <h2
+          class="text-4xl font-bold text-center mb-16 text-gray-800 dark:text-white"
+        >
+          About Me
+        </h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="card-3d">
+            <div
+              class="bg-gradient-to-br from-blue-400 to-purple-500 p-1 rounded-2xl"
+            >
+              <div class="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 h-full">
+                <div
+                  class="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-6xl text-white overflow-hidden"
+                >
+                  <!-- ADD YOUR PHOTO URL HERE: Replace empty quotes with your image URL -->
+                  <img
+                    id="profilePhoto"
+                    src="/WhatsApp Image 2025-06-02 at 16.39.22_3523802f.jpg"
+                    alt="Sadik Mondal"
+                    class="w-full h-full object-cover rounded-full hidden"
+                  />
+                  <i id="defaultIcon" class="fas fa-user"></i>
+                </div>
+                <div class="text-center">
+                  <h3
+                    class="text-2xl font-bold text-gray-800 dark:text-white mb-2"
+                  >
+                    Sadik Mondal
+                  </h3>
+                  <p class="text-blue-500 font-medium">B.Tech CSE Student</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-6">
+            <h3 class="text-3xl font-bold text-gray-800 dark:text-white">
+              Passionate Developer & Problem Solver
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+              I'm a dedicated 2nd-year Computer Science Engineering student at
+              Aliah University with a strong foundation in MERN stack
+              development and Data Structures & Algorithms in C++. My passion
+              lies in building real-world applications and solving complex
+              problems.
+            </p>
+            <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+              Currently working on exciting projects including a Train Seat
+              Booking System and actively contributing to open-source. I'm
+              always eager to learn new technologies and collaborate on
+              innovative solutions.
+            </p>
+            <div class="grid grid-cols-2 gap-4 mt-8">
+              <div
+                class="text-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg"
+              >
+                <div class="text-3xl font-bold text-blue-500">100+</div>
+                <div class="text-gray-600 dark:text-gray-300">DSA Problems</div>
+              </div>
+              <div
+                class="text-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg"
+              >
+                <div class="text-3xl font-bold text-purple-500">5+</div>
+                <div class="text-gray-600 dark:text-gray-300">Projects</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section
+      id="projects"
+      class="py-20 bg-white dark:bg-gray-800 transition-colors duration-300"
+    >
+      <div class="max-w-6xl mx-auto px-4">
+        <h2
+          class="text-4xl font-bold text-center mb-16 text-gray-800 dark:text-white"
+        >
+          Featured Projects
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project 1 -->
+          <div class="project-card">
+            <div
+              class="project-inner bg-white dark:bg-gray-700 rounded-xl shadow-xl overflow-hidden"
+            >
+              <div
+                class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center"
+              >
+                <i class="fas fa-train text-6xl text-white"></i>
+              </div>
+              <div class="p-6">
+                <h3
+                  class="text-xl font-bold mb-3 text-gray-800 dark:text-white"
+                >
+                  Train Seat Booking System
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                  Real-time seat availability with payment gateway integration
+                  using MERN stack and Socket.io
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm"
+                    >React</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm"
+                    >Node.js</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm"
+                    >MongoDB</span
+                  >
+                </div>
+                <div class="flex space-x-3">
+                  <button
+                    class="flex-1 bg-gray-800 dark:bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-500 transition-colors"
+                  >
+                    <i class="fab fa-github mr-2"></i>GitHub
+                  </button>
+                  <button
+                    class="flex-1 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors"
+                  >
+                    <i class="fas fa-external-link-alt mr-2"></i>Demo
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card">
+            <div
+              class="project-inner bg-white dark:bg-gray-700 rounded-xl shadow-xl overflow-hidden"
+            >
+              <div
+                class="h-48 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center"
+              >
+                <i class="fas fa-tasks text-6xl text-white"></i>
+              </div>
+              <div class="p-6">
+                <h3
+                  class="text-xl font-bold mb-3 text-gray-800 dark:text-white"
+                >
+                  Todo List App
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                  Full-stack todo application with CRUD operations and JWT
+                  authentication
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm"
+                    >React</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full text-sm"
+                    >JWT</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm"
+                    >Express</span
+                  >
+                </div>
+                <div class="flex space-x-3">
+                  <button
+                    class="flex-1 bg-gray-800 dark:bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-500 transition-colors"
+                  >
+                    <i class="fab fa-github mr-2"></i>GitHub
+                  </button>
+                  <button
+                    class="flex-1 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors"
+                  >
+                    <i class="fas fa-external-link-alt mr-2"></i>Live
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card">
+            <div
+              class="project-inner bg-white dark:bg-gray-700 rounded-xl shadow-xl overflow-hidden"
+            >
+              <div
+                class="h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center"
+              >
+                <i class="fas fa-blog text-6xl text-white"></i>
+              </div>
+              <div class="p-6">
+                <h3
+                  class="text-xl font-bold mb-3 text-gray-800 dark:text-white"
+                >
+                  Blog Platform
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                  Personal blog with Markdown editor and comment system
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm"
+                    >React</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 rounded-full text-sm"
+                    >Markdown</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm"
+                    >MongoDB</span
+                  >
+                </div>
+                <div class="flex space-x-3">
+                  <button
+                    class="flex-1 bg-gray-800 dark:bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-500 transition-colors"
+                  >
+                    <i class="fab fa-github mr-2"></i>GitHub
+                  </button>
+                  <button
+                    class="flex-1 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors"
+                  >
+                    <i class="fas fa-external-link-alt mr-2"></i>Live
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section
+      id="skills"
+      class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+    >
+      <div class="max-w-6xl mx-auto px-4">
+        <h2
+          class="text-4xl font-bold text-center mb-16 text-gray-800 dark:text-white"
+        >
+          Skills & Technologies
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+            <h3
+              class="text-xl font-bold mb-4 text-gray-800 dark:text-white flex items-center"
+            >
+              <i class="fas fa-code mr-3 text-blue-500"></i>Programming
+            </h3>
+            <div class="space-y-2">
+              <div
+                class="skill-tag bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-2 rounded-lg"
+              >
+                C++
+              </div>
+              <div
+                class="skill-tag bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-2 rounded-lg"
+              >
+                JavaScript
+              </div>
+              <div
+                class="skill-tag bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-2 rounded-lg"
+              >
+                Python
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+            <h3
+              class="text-xl font-bold mb-4 text-gray-800 dark:text-white flex items-center"
+            >
+              <i class="fas fa-globe mr-3 text-green-500"></i>Web Tech
+            </h3>
+            <div class="space-y-2">
+              <div
+                class="skill-tag bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-3 py-2 rounded-lg"
+              >
+                HTML/CSS
+              </div>
+              <div
+                class="skill-tag bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-2 rounded-lg"
+              >
+                React
+              </div>
+              <div
+                class="skill-tag bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-2 rounded-lg"
+              >
+                Node.js
+              </div>
+              <div
+                class="skill-tag bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-2 rounded-lg"
+              >
+                MongoDB
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+            <h3
+              class="text-xl font-bold mb-4 text-gray-800 dark:text-white flex items-center"
+            >
+              <i class="fas fa-tools mr-3 text-purple-500"></i>Tools
+            </h3>
+            <div class="space-y-2">
+              <div
+                class="skill-tag bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-2 rounded-lg"
+              >
+                Git
+              </div>
+              <div
+                class="skill-tag bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-2 rounded-lg"
+              >
+                VS Code
+              </div>
+              <div
+                class="skill-tag bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-3 py-2 rounded-lg"
+              >
+                Postman
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+            <h3
+              class="text-xl font-bold mb-4 text-gray-800 dark:text-white flex items-center"
+            >
+              <i class="fas fa-heart mr-3 text-red-500"></i>Soft Skills
+            </h3>
+            <div class="space-y-2">
+              <div
+                class="skill-tag bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-2 rounded-lg"
+              >
+                Problem Solving
+              </div>
+              <div
+                class="skill-tag bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-2 rounded-lg"
+              >
+                Communication
+              </div>
+              <div
+                class="skill-tag bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-2 rounded-lg"
+              >
+                Teamwork
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience & Education Section -->
+    <section
+      class="py-20 bg-white dark:bg-gray-800 transition-colors duration-300"
+    >
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12">
+          <!-- Experience -->
+          <div>
+            <h2 class="text-3xl font-bold mb-8 text-gray-800 dark:text-white">
+              Experience & Certifications
+            </h2>
+            <div class="space-y-6">
+              <div
+                class="card-3d bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-xl"
+              >
+                <h3
+                  class="text-xl font-bold text-gray-800 dark:text-white mb-2"
+                >
+                  C++ & DSA - Apna College
+                </h3>
+                <p class="text-blue-600 dark:text-blue-400 font-medium mb-2">
+                  Completed 2025
+                </p>
+                <p class="text-gray-600 dark:text-gray-300">
+                  Comprehensive course covering data structures and algorithms
+                </p>
+              </div>
+              <div
+                class="card-3d bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 p-6 rounded-xl"
+              >
+                <h3
+                  class="text-xl font-bold text-gray-800 dark:text-white mb-2"
+                >
+                  Frontend Web Dev - Udemy
+                </h3>
+                <p class="text-green-600 dark:text-green-400 font-medium mb-2">
+                  In Progress
+                </p>
+                <p class="text-gray-600 dark:text-gray-300">
+                  Modern frontend development with React and advanced CSS
+                </p>
+              </div>
+              <div
+                class="card-3d bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-6 rounded-xl"
+              >
+                <h3
+                  class="text-xl font-bold text-gray-800 dark:text-white mb-2"
+                >
+                  100+ DSA Problems
+                </h3>
+                <p
+                  class="text-purple-600 dark:text-purple-400 font-medium mb-2"
+                >
+                  LeetCode & GFG
+                </p>
+                <p class="text-gray-600 dark:text-gray-300">
+                  Consistent problem-solving practice with focus on optimization
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div>
+            <h2 class="text-3xl font-bold mb-8 text-gray-800 dark:text-white">
+              Education
+            </h2>
+            <div class="space-y-6">
+              <div
+                class="card-3d bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg border-l-4 border-blue-500"
+              >
+                <h3
+                  class="text-xl font-bold text-gray-800 dark:text-white mb-2"
+                >
+                  Aliah University
+                </h3>
+                <p class="text-blue-600 dark:text-blue-400 font-medium mb-1">
+                  B.Tech in Computer Science & Engineering
+                </p>
+                <p class="text-gray-600 dark:text-gray-300 mb-2">2024 - 2028</p>
+                <p class="text-gray-600 dark:text-gray-300">
+                  Currently in 2nd year, focusing on software development and
+                  algorithms
+                </p>
+              </div>
+              <div
+                class="card-3d bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg border-l-4 border-green-500"
+              >
+                <h3
+                  class="text-xl font-bold text-gray-800 dark:text-white mb-2"
+                >
+                  Ramakrishna Mission Vidyapith
+                </h3>
+                <p class="text-green-600 dark:text-green-400 font-medium mb-1">
+                  12th Grade (Science)
+                </p>
+                <p class="text-gray-600 dark:text-gray-300 mb-2">2021 - 2023</p>
+                <p class="text-gray-600 dark:text-gray-300">
+                  Scored 87% with focus on Mathematics, Physics & Chemistry
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section
+      id="contact"
+      class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+    >
+      <div class="max-w-4xl mx-auto px-4">
+        <h2
+          class="text-4xl font-bold text-center mb-16 text-gray-800 dark:text-white"
+        >
+          Get In Touch
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div
+            class="card-3d bg-white dark:bg-gray-800 p-8 rounded-xl shadow-xl"
+          >
+            <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
+              Contact Information
+            </h3>
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center"
+                >
+                  <i class="fas fa-phone text-white"></i>
+                </div>
+                <div>
+                  <p class="text-gray-600 dark:text-gray-300">Phone</p>
+                  <p class="text-gray-800 dark:text-white font-medium">
+                    +91 7679337994
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center"
+                >
+                  <i class="fas fa-envelope text-white"></i>
+                </div>
+                <div>
+                  <p class="text-gray-600 dark:text-gray-300">Email</p>
+                  <p class="text-gray-800 dark:text-white font-medium">
+                    sadikmondal789@gmail.com
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center"
+                >
+                  <i class="fas fa-map-marker-alt text-white"></i>
+                </div>
+                <div>
+                  <p class="text-gray-600 dark:text-gray-300">Location</p>
+                  <p class="text-gray-800 dark:text-white font-medium">
+                    Kolkata, India
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card-3d bg-white dark:bg-gray-800 p-8 rounded-xl shadow-xl"
+          >
+            <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
+              Connect With Me
+            </h3>
+            <div class="grid grid-cols-2 gap-4">
+              <a
+                href="https://github.com/Sadik47x"
+                target="_blank"
+                class="flex items-center justify-center space-x-3 bg-gray-800 text-white p-4 rounded-lg hover:bg-gray-700 transition-colors"
+              >
+                <span
+                  class="bg-gray-100 dark:bg-gray-700 rounded-full p-2 shadow-md border border-gray-300 dark:border-gray-600"
+                >
+                  <i
+                    class="fab fa-github text-2xl text-gray-800 dark:text-white"
+                  ></i>
+                </span>
+                <span>GitHub</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/sadik-mondal-engineer"
+                target="_blank"
+                class="flex items-center justify-center space-x-3 bg-blue-600 text-white p-4 rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <i class="fab fa-linkedin text-2xl"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href="https://leetcode.com/u/Sadik47x/"
+                target="_blank"
+                class="flex items-center justify-center space-x-3 bg-orange-500 text-white p-4 rounded-lg hover:bg-orange-600 transition-colors"
+              >
+                <i class="fas fa-code text-2xl"></i>
+                <span>LeetCode</span>
+              </a>
+              <a
+                href="mailto:sadikmondal789@gmail.com"
+                class="flex items-center justify-center space-x-3 bg-green-500 text-white p-4 rounded-lg hover:bg-green-600 transition-colors"
+              >
+                <i class="fas fa-envelope text-2xl"></i>
+                <span>Email</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-8">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <p>&copy; 2025 Sadik Mondal. Built with passion and code ❤️</p>
+      </div>
+    </footer>
+
+    <script>
+      // Dark mode toggle
+      const darkModeToggle = document.getElementById("darkModeToggle");
+      const html = document.documentElement;
+
+      // Initialize dark mode on page load
+      function initializeDarkMode() {
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+
+        if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+          html.classList.add("dark");
+        } else {
+          html.classList.remove("dark");
+        }
+      }
+
+      // Call initialization immediately
+      initializeDarkMode();
+
+      // Dark mode toggle event listener
+      darkModeToggle.addEventListener("click", () => {
+        html.classList.toggle("dark");
+        const theme = html.classList.contains("dark") ? "dark" : "light";
+        localStorage.setItem("theme", theme);
+      });
+
+      // Smooth scrolling for navigation
+      function scrollToSection(sectionId) {
+        document.getElementById(sectionId).scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+
+      // Auto-load profile photo if URL is provided
+      window.addEventListener("load", function () {
+        const profilePhoto = document.getElementById("profilePhoto");
+        const defaultIcon = document.getElementById("defaultIcon");
+
+        // If photo URL is provided in the src attribute, show it
+        if (profilePhoto.src && profilePhoto.src !== window.location.href) {
+          profilePhoto.classList.remove("hidden");
+          defaultIcon.classList.add("hidden");
+        }
+      });
+
+      // Parallax effect for hero section
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const parallax = document.querySelector(".gradient-bg");
+        if (parallax) {
+          const speed = scrolled * 0.5;
+          parallax.style.transform = `translateY(${speed}px)`;
+        }
+      });
+
+      // Add scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Observe all sections
+      document.querySelectorAll("section").forEach((section) => {
+        section.style.opacity = "0";
+        section.style.transform = "translateY(30px)";
+        section.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        observer.observe(section);
+      });
+
+      // Mobile menu toggle (if needed)
+      const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+      if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener("click", () => {
+          const mobileMenu = document.getElementById("mobileMenu");
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
+
+      // Logo dropdown functionality
+      let isDropdownOpen = false;
+
+      function toggleLogoMenu() {
+        const dropdown = document.getElementById("logoDropdown");
+        const chevron = document.getElementById("logoChevron");
+
+        isDropdownOpen = !isDropdownOpen;
+
+        if (isDropdownOpen) {
+          dropdown.classList.remove("opacity-0", "invisible", "scale-95");
+          dropdown.classList.add("opacity-100", "visible", "scale-100");
+          chevron.style.transform = "rotate(180deg)";
+        } else {
+          dropdown.classList.add("opacity-0", "invisible", "scale-95");
+          dropdown.classList.remove("opacity-100", "visible", "scale-100");
+          chevron.style.transform = "rotate(0deg)";
+        }
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", function (event) {
+        const logoContainer = document.querySelector(".relative");
+        const dropdown = document.getElementById("logoDropdown");
+        const chevron = document.getElementById("logoChevron");
+
+        // Check if click is outside the logo container
+        if (!logoContainer.contains(event.target) && isDropdownOpen) {
+          isDropdownOpen = false;
+          dropdown.classList.add("opacity-0", "invisible", "scale-95");
+          dropdown.classList.remove("opacity-100", "visible", "scale-100");
+          chevron.style.transform = "rotate(0deg)";
+        }
+      });
+
+      // Close dropdown when scrolling
+      window.addEventListener("scroll", function () {
+        if (isDropdownOpen) {
+          const dropdown = document.getElementById("logoDropdown");
+          const chevron = document.getElementById("logoChevron");
+
+          isDropdownOpen = false;
+          dropdown.classList.add("opacity-0", "invisible", "scale-95");
+          dropdown.classList.remove("opacity-100", "visible", "scale-100");
+          chevron.style.transform = "rotate(0deg)";
+        }
+      });
+
+      // Dynamic typewriter effect for skills
+      const skills = [
+        "MERN Stack Developer",
+        "C++ DSA Enthusiast",
+        "React Specialist",
+        "Node.js Developer",
+        "Problem Solver",
+      ];
+
+      let currentSkillIndex = 0;
+      let currentText = "";
+      let isDeleting = false;
+      let typeSpeed = 100;
+
+      function typeSkill() {
+        const typewriterElement = document.getElementById("typewriter");
+        const currentSkill = skills[currentSkillIndex];
+
+        if (isDeleting) {
+          currentText = currentSkill.substring(0, currentText.length - 1);
+          typeSpeed = 50; // Faster deletion
+        } else {
+          currentText = currentSkill.substring(0, currentText.length + 1);
+          typeSpeed = 100; // Normal typing speed
+        }
+
+        typewriterElement.textContent = currentText;
+
+        if (!isDeleting && currentText === currentSkill) {
+          // Pause at end of word
+          typeSpeed = 2000;
+          isDeleting = true;
+        } else if (isDeleting && currentText === "") {
+          isDeleting = false;
+          currentSkillIndex = (currentSkillIndex + 1) % skills.length;
+          typeSpeed = 500; // Pause before typing next word
+        }
+
+        setTimeout(typeSkill, typeSpeed);
+      }
+
+      // Start the typewriter effect after page loads
+      setTimeout(typeSkill, 1000);
+
+      // Add active nav link highlighting
+      window.addEventListener("scroll", () => {
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (scrollY >= sectionTop - 200) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("text-blue-500");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("text-blue-500");
+          }
+        });
+      });
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'96a71b5987de7f76',t:'MTc1NDQwNTQyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
